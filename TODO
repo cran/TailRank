@@ -1,0 +1,5 @@
+[1] Add some test routines.
+
+[2] When R-Forge gets the build process fixed so it finds "Suggests"
+packages locally, move 'ProstateData' back from Depends to Suggests.
+And get rid of the "import" directive in NAMESPACE.

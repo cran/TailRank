@@ -1,0 +1,18 @@
+			Dear Emacs, please make this -*-Text-*- mode!
+	**************************************************
+	*						 *
+	*	       3.1 SERIES NEWS			 *
+	*						 *
+	**************************************************
+
+
+		CHANGES IN R VERSION 3.1.0
+
+GENERAL
+
+    o	Renamed the package that contains the example data from
+    	"ProstateData" to "oompaData".
+
+ADMINISTRATIVE
+
+    o	Changed the LICENSE from Artistic 2.0 to Apache 2.0

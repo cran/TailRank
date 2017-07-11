@@ -1,0 +1,173 @@
+%\VignetteIndexEntry{TailRank}
+%\VignetteKeywords{TailRank,tail rank test}
+%\VignetteDepends{TailRank,methods,Biobase}
+%\VignettePackage{TailRank}
+\documentclass{article}
+
+\usepackage{hyperref}
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+
+\title{The Tail Rank Test}
+\author{Kevin R. Coombes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+OOMPA is a suite of object-oriented tools for processing and analyzing
+large biological data sets, such as those arising from mRNA expression
+microarrays or mass spectrometry proteomics.
+
+This vignette documents the tail rank test, which provides an
+alternative method for discovering potential biomarkers in large data
+sets.  The idea is that one starts with a target specificity for a
+gene as a univariate biomarker, and uses the ``normal'' or
+``baseline'' samples to estimate a threshold that yields that
+specificity. Then, for each gene, one counts the number of ``cancer''
+or ``experimental'' samples that exceed the gene-specific threshold.
+Significance is determined based on control of the family-wise error
+rate (FWER).
+
+\section{Getting Started}
+
+As usual, we start by loading the library.
+<<lib>>=
+library(TailRank)
+@ 
+
+The \Rpackage{TailRank} package uses an auxiliary package to supply
+sample data that we
+can use to illustrate the methods.  The sample data consists of a
+subset containing $2000$ genes from a prostate cancer study on glass
+arrays reported by Lapointe and colleagues [1].  The next set of
+commands loads the data.
+
+<<data>>=
+library(oompaData)
+data(expression.data)
+data(gene.info)
+data(clinical.info)
+dim(clinical.info)
+@ 
+
+There are $112$ samples in the study.  The \Robject{Subgroups} column
+of the \Robject{clinical.info} data frame refers to the subgroups
+discovered in the original publication by clustering based on the gene
+expression data.  The \Robject{ChipType} column identifies the two
+different generations of glass arrays that were combined in the study.
+The \Robject{Status} column classifies the samples as normal prostate
+(N), primary prostate tumor (T), or lymph node metastasis (L).  Since
+there is a natural order to this status in terms of the severity of
+the disease, we are going to make certain that it is used:
+
+<<summary>>=
+clinical.info$Status <- ordered(clinical.info$Status, 
+                                levels=c("N", "T", "L"))
+summary(clinical.info)
+@ 
+
+\section{Performing the Tail Rank Test}
+
+The main function in the package is the \Rfunction{TailRankTest}.  We
+start by invoking this function with the default values of the
+arguments.  The summary includes details on the parameters that were
+used, along with the fact that $49$ of the $2000$ genes were more
+highly expressed in non-normal samples than would be expected by
+chance, based on a $5\%$ FWER.
+
+<<trt>>=
+trt <- TailRankTest(expression.data, clinical.info$Status) #$
+summary(trt)
+@ 
+
+In the next example, we increase both the target specificity (from
+the default of $95\%$ to a desired value of $99\%$) and the desired
+confidence limits (to $99\%$ from the default of $95\%$).  With this
+more stringent criteria, only $25$ of the genes remain significant.
+
+<<trt2>>=
+trt2 <- TailRankTest(expression.data, clinical.info$Status, 
+                    specificity=0.99, confidence=0.99) #$
+summary(trt2)
+@ 
+
+\subsection{Which genes are significant?}
+
+After performing an analysis that identifies a gene list like this, it
+is, of course, natural to want to know which genes were selected.  The
+\Rfunction{as.logical} method converts the results of the tail rank
+test into a logical vector that selects these significant genes.
+Using this method, we can verify that the $25$ genes selected by the
+more stringent criteria are a subset of the $49$ genes selected using
+the weaker criteria.
+
+<<sel>>=
+sel <- as.logical(trt)
+sel2 <- as.logical(trt2)
+sum(sel2 & sel)
+@ 
+
+Since this vector serves as index into the \Robject{gene.info}
+database, we can figure out which genes were actually selected.
+<<gi>>=
+gene.info[sel2, 3:6]
+@ 
+
+\section{Power Computations}
+
+The power depends on the number of genes (G), the number of healthy
+samples (N1), the number of cancer samples (N2), the target
+specificity (psi), the confidence (conf = 1 - FWER), and the
+sensitivity that you want to be able to detect (phi).  Here is an
+example using the sizes from the prostate cancer data set, showing
+that we have more than $70\%$ power to detect a marker with $40\%$
+sensitivity. 
+
+<<trp>>=
+tailRankPower(2000, N1=41, N2=71, psi=0.95, phi=0.40, conf=0.95)
+@ 
+
+The next example shows that the power decreases to $43\%$ when using
+the same number of samples with a whole genome array containing
+$40000$ gene probes.  (This was the size of the full study from which
+these $2000$ genes were randomly selected.)
+
+<<trp2>>=
+tailRankPower(40000, N1=41, N2=71, psi=0.95, phi=0.40, conf=0.95)
+@ 
+
+We can determine the power for a variety of cancer sample sizes,
+keeping everything else the same
+
+<<trp3>>=
+tailRankPower(40000, N1=41, N2=seq(40,100,by=10), 
+              psi=0.95, phi=0.40, conf=0.95)
+@ 
+
+More generally, we can create power tables using the
+\Rfunction{biomarkerPowerTable} function.  Individual tables have rows
+labeled by the number of ``cancer'' samples and columns labeled by the
+desired sensitivity; the entries in the table show the power to
+detect that level of sensitivity when using that many samples.
+
+
+<<bmpt>>=
+biomarkerPowerTable(G=c(10000, 20000, 40000), N1=41, 
+                    N2=seq(40, 100, by=10), conf=0.95, 
+                    psi=0.95, phi=seq(0.30, 0.50, by=0.05))
+@ 
+
+\section{References}
+
+[1]  Lapointe J et al. (2004) Gene expression profiling identifies
+clinically relevant subtypes of prostate cancer.  \emph{Proc Natl Acad
+Sci U S A}, 101, 811--816.
+
+
+\end{document}

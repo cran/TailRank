@@ -1,0 +1,76 @@
+%\VignetteIndexEntry{Beta-Binomial Distribution}
+%\VignetteKeywords{TailRank,beta binomial distribution}
+%\VignetteDepends{TailRank}
+%\VignettePackage{TailRank}
+\documentclass{article}
+
+\usepackage{hyperref}
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+
+\title{The Beta-Binomial Distribution}
+\author{Kevin R. Coombes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+This vignette documents the beta-binomial distribution, which is
+included in the \Rpackage{TailRank} package 
+<<lib>>=
+library(TailRank)
+@ 
+Mathematically, the beta-binomial distribution has parameters $N$,
+$u$, and $v$ that determine the density function
+$$ {N \choose x} Beta(x+u, N-x+v)/Beta(u,v). $$
+Statistically, one can think of this distribution as a hierarchical
+model, starting with a binomial distribution $Binom(x, N, \theta)$ whose
+success parameter $\theta$ comes from a beta distribution, $\theta
+\sim Beta(x, u, v)$. This distribution has a larger variance than the
+binomial distribution with a fixed (known) parameter $\theta$.
+
+We provide the usual set of functions to implement a distribution:
+\begin{itemize}
+\item \Rfunction{dbb} is the distribution function.
+\item \Rfunction{pbb} is the cumulative distribution function.
+\item \Rfunction{qbb} is the quantile function.
+\item \Rfunction{rbb} is the random-sample function.
+\end{itemize}  
+
+We start by comparing the distributions of a binomial distribution and
+a beta-binomial distribution.
+<<compare>>=
+N <- 20
+u <- 3
+v <- 10
+p <- u/(u+v)
+x <- 0:N
+y <- dbinom(x, N, p)
+yy <- dbb(x, N, u, v)
+
+@ 
+
+<<fig=TRUE>>=
+barplot(t(matrix(c(y, yy), ncol=2)), beside=TRUE, col=c("blue", "red"))
+legend("topright", c("Binomial", "Beta-Binomial"), col=c("blue", "red"), pch=15)
+@ 
+
+Now we sample data from each of these distributions.
+<<>>=
+set.seed(561662)
+r <- rbinom(1000, N, p)
+rr <- rbb(1000, N, u, v)
+mean(r)
+mean(rr)
+var(r)
+var(rr)
+sd(r)
+sd(rr)
+@ 
+
+\end{document}
