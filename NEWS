@@ -1,9 +1,19 @@
 			Dear Emacs, please make this -*-Text-*- mode!
 	**************************************************
 	*						 *
-	*	       3.1 SERIES NEWS			 *
+	*	       3.2 SERIES NEWS			 *
 	*						 *
 	**************************************************
+
+
+		CHANGES IN R VERSION 3.2.0
+
+FEATURES
+
+    o	Changed the implementation of the beta-binomial density
+        function so it performs computations on the log scale (at te
+        suggestion of Nathan Wycoff). Then added an optional parameter
+        to return the values on the log-transformed sxcale.
 
 
 		CHANGES IN R VERSION 3.1.0

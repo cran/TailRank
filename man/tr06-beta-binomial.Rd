@@ -12,7 +12,7 @@ distribution is distributed as binomial distribution with parameters
 has a beta distribution with parameters \code{u} and \code{v}.
 }
 \usage{
-dbb(x, N, u, v)
+dbb(x, N, u, v, log = FALSE)
 pbb(q, N, u, v)
 qbb(p, N, u, v)
 rbb(n, N, u, v)
@@ -25,6 +25,7 @@ rbb(n, N, u, v)
   \item{N}{number of trials ( a positive integer)}
   \item{u}{first positive parameter of the beta distribution}
   \item{v}{second positive parameter of the beta distribution}
+  \item{log}{A logical value; if true, values are returned on the log scale}
 }
 \details{
   The beta-binomial distribution with parameters \eqn{N}, \eqn{u}, and

@@ -1,7 +1,13 @@
 # Copyright (C) Kevin R. Coombes, 2007-2012
 
-dbb <- function(x, N, u, v) {
-  beta(x+u, N-x+v)/beta(u,v)*choose(N,x)
+dbb <- function(x, N, u, v, log = FALSE) {
+  logval <- lbeta(x+u, N-x+v) - lbeta(u,v) + lchoose(N,x)
+  if (log) {
+    ret <- logval
+  } else {
+    ret <- exp(logval)
+  }
+  ret
 }
 
 pbb <- function(q, N, u, v) {

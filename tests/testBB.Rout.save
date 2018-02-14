@@ -1,0 +1,37 @@
+
+R version 3.4.3 (2017-11-30) -- "Kite-Eating Tree"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(TailRank)
+Loading required package: oompaBase
+> 
+> # without logs, some of these will fail
+> dbb(50:100, 1e5, 2, 20)
+ [1] 2.120875e-06 2.162049e-06 2.203209e-06 2.244352e-06 2.285479e-06
+ [6] 2.326591e-06 2.367687e-06 2.408768e-06 2.449833e-06 2.490882e-06
+[11] 2.531915e-06 2.572933e-06 2.613935e-06 2.654921e-06 2.695892e-06
+[16] 2.736846e-06 2.777786e-06 2.818709e-06 2.859617e-06 2.900509e-06
+[21] 2.941386e-06 2.982247e-06 3.023092e-06 3.063922e-06 3.104736e-06
+[26] 3.145534e-06 3.186317e-06 3.227084e-06 3.267836e-06 3.308572e-06
+[31] 3.349292e-06 3.389997e-06 3.430686e-06 3.471359e-06 3.512017e-06
+[36] 3.552659e-06 3.593286e-06 3.633897e-06 3.674493e-06 3.715073e-06
+[41] 3.755637e-06 3.796186e-06 3.836719e-06 3.877237e-06 3.917739e-06
+[46] 3.958225e-06 3.998696e-06 4.039152e-06 4.079592e-06 4.120016e-06
+[51] 4.160425e-06
+> 
+> proc.time()
+   user  system elapsed 
+   1.06    0.12    1.17 
