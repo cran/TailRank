@@ -1,7 +1,7 @@
 Package: TailRank
 Title: The Tail-Rank Statistic
-Version: 3.2.0
-Date: 2018-02-14
+Version: 3.2.1
+Date: 2018-05-17
 Author: Kevin R. Coombes
 Description: Implements the tail-rank statistic for selecting biomarkers
   from a microarray data set, an efficient nonparametric test focused
@@ -15,6 +15,6 @@ License: Apache License (== 2.0)
 LazyLoad: yes
 URL: http://oompa.r-forge.r-project.org/
 NeedsCompilation: no
-Packaged: 2018-02-14 18:00:40 UTC; coom05
+Packaged: 2018-05-17 14:00:45 UTC; Kevin
 Repository: CRAN
-Date/Publication: 2018-02-14 21:41:31 UTC
+Date/Publication: 2018-05-17 23:34:15 UTC

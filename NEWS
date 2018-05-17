@@ -6,6 +6,13 @@
 	**************************************************
 
 
+		CHANGES IN R VERSION 3.2.1
+
+UPDATES
+
+    o	Changed the use of S4 classes to avoid recently depdrecated or
+        discouraged elements.
+
 		CHANGES IN R VERSION 3.2.0
 
 FEATURES

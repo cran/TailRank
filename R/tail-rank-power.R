@@ -70,10 +70,10 @@ tailRankPower <- function(G, N1, N2, psi, phi, conf=0.95,
 # Now we introduce a class to generate power tables.
 
 setClass('BMPT',
-         representation(G='numeric',
-                        psi='numeric',
-                        conf='numeric',
-                        power='data.frame')
+         slots = c(G='numeric',
+                   psi='numeric',
+                   conf='numeric',
+                   power='data.frame')
          )
 
 

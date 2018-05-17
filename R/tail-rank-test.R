@@ -11,18 +11,18 @@ require('methods')
 # We start with a class to hold and display the results.
 
 setClass("TailRankTest",
-         representation(statistic='numeric',	# nonnegative integer vector
-                        direction='character',	# up, down, or two-sided
-                        N1='numeric',		# number of healthy
-                        N2='numeric',		# number of cancer
-                        tau='numeric or NULL',  # upper thresholds
-                        rho='numeric or NULL',  # lower thresholds
-                        specificity='numeric',	# between 0 and 1
-                        tolerance='numeric',	# between 0 and 1
-                        confidence='numeric',	# between 0 and 1
-                        model='character',      # 'bb' or 'binomial'
-                        cutoff='numeric'	# integer: max value under null
-                        )
+         slots = c(statistic='numeric',	# nonnegative integer vector
+                   direction='character',	# up, down, or two-sided
+                   N1='numeric',		# number of healthy
+                   N2='numeric',		# number of cancer
+                   tau='numeric or NULL',  # upper thresholds
+                   rho='numeric or NULL',  # lower thresholds
+                   specificity='numeric',	# between 0 and 1
+                   tolerance='numeric',	# between 0 and 1
+                   confidence='numeric',	# between 0 and 1
+                   model='character',      # 'bb' or 'binomial'
+                   cutoff='numeric'	# integer: max value under null
+                   )
          )
 
 setMethod('summary', signature(object='TailRankTest'),
