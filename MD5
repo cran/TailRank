@@ -1,4 +1,4 @@
-ff5f97b3d83bb5a64c101842826eac88 *DESCRIPTION
+2b87298689e60231cbb2b52c25605d18 *DESCRIPTION
 06c7b940ab16bed0b32db72c57641c16 *NAMESPACE
 138e40e4ef32911c915de79c972b88d4 *NEWS
 911e1a0e2baafc9c784af929709db391 *R/beta-binomial.R
@@ -6,13 +6,13 @@ ff5f97b3d83bb5a64c101842826eac88 *DESCRIPTION
 ec4fab34f608f401985b283805ee61e2 *R/tail-rank-power.R
 91a3a0eee4c5e55a43e5c88c60983a85 *R/tail-rank-test.R
 60f4375955b4f40f9a956cc99182bf56 *TODO
-8a694b576e3ce0f2ecbfda136228601d *build/vignette.rds
-48326aa6581c77fe70b7269120a837ef *inst/doc/betabinomial.R
+dac82fd309ae7f2b6597d05c01211248 *build/vignette.rds
+31f1d05f382647d5e4f0a77d3f1483fb *inst/doc/betabinomial.R
 98c346ecc7803a3f515bd4b337d61761 *inst/doc/betabinomial.Rnw
-89b765604cc9004547bf942089ebdc2b *inst/doc/betabinomial.pdf
-92d257d915d28ea35407a58296fdb806 *inst/doc/tailrank.R
+7de536064e6060a4564555dc6a922df4 *inst/doc/betabinomial.pdf
+bf069052094a6f6aac5cb46df351772f *inst/doc/tailrank.R
 44c13b32186f16020e03ac81b860ed80 *inst/doc/tailrank.Rnw
-fa6efa74b405e986f2774fd987975fdc *inst/doc/tailrank.pdf
+b71ec1719acdc83276ba26046b93839e *inst/doc/tailrank.pdf
 3d20ef39e875bc27d361b7978cc1923d *inst/sample/TR-harvard.R
 d1d4a7e62343809654f3a41140380f29 *inst/sample/TR-prostate.R
 5ca9df4e71e208ad6cf9467afd6f9ca3 *inst/sample/TR-tables.R

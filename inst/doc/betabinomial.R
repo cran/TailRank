@@ -38,5 +38,3 @@ var(r)
 var(rr)
 sd(r)
 sd(rr)
-
-

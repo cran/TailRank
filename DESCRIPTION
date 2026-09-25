@@ -1,7 +1,7 @@
 Package: TailRank
 Title: The Tail-Rank Statistic
-Version: 3.2.4
-Date: 2025-04-07
+Version: 3.2.6
+Date: 2026-09-24
 Authors@R: person(given = c("Kevin", "R."), family = "Coombes",
                   role = c("aut", "cre"), email = "krc@silicovore.com")
 Description: Implements the tail-rank statistic for selecting biomarkers
@@ -13,10 +13,10 @@ Imports: methods, graphics, stats, Biobase, oompaData
 Suggests: xtable
 License: Apache License (== 2.0)
 LazyLoad: yes
-URL: http://oompa.r-forge.r-project.org/
+URL: http://silicovore.com/OOMPA/index.html
 NeedsCompilation: no
-Packaged: 2025-04-07 11:34:57 UTC; kevin
+Packaged: 2026-09-25 12:12:04 UTC; KRC
 Author: Kevin R. Coombes [aut, cre]
 Maintainer: Kevin R. Coombes <krc@silicovore.com>
 Repository: CRAN
-Date/Publication: 2025-04-07 12:30:02 UTC
+Date/Publication: 2026-09-25 12:50:02 UTC

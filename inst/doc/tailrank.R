@@ -78,5 +78,3 @@ tailRankPower(40000, N1=41, N2=seq(40,100,by=10),
 biomarkerPowerTable(G=c(10000, 20000, 40000), N1=41, 
                     N2=seq(40, 100, by=10), conf=0.95, 
                     psi=0.95, phi=seq(0.30, 0.50, by=0.05))
-
-
